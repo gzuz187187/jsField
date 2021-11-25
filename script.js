@@ -1,18 +1,32 @@
 const allFields = document.querySelectorAll("[single-field]");
 
-let alertBruh = () => {
-  alert("Bruh");
-}
+// setup fields, else e.target.backgroundColor = <empty string>
+allFields.forEach(field => {
+  field.style.backgroundColor = "rgb(255, 255, 255)";
+});
 
-const getIndex = (field) => {
-  console.log(allFields.indexOf(field));
-  return allFields.indexOf(field);
+const recolorField = (e) => {
+  let currentColor = e.target.style.backgroundColor;
+  
+  if (currentColor == "rgb(255, 255, 255)") {
+    e.target.style.backgroundColor = "rgb(0, 255, 0)";
+  }
+
+  if (currentColor == "rgb(0, 255, 0)") {
+    e.target.style.backgroundColor = "rgb(0, 0, 255)";
+  }
+
+  if (currentColor == "rgb(0, 0, 255)") {
+    e.target.style.backgroundColor = "rgb(255, 0, 0)";
+  }
+
+  if (currentColor == "rgb(255, 0, 0)") {
+    e.target.style.backgroundColor = "rgb(255, 255, 255)";
+  }
 }
 
 allFields.forEach(field => {
-  field.addEventListener("mouseenter", () => {
-    // alertBruh();
-    getIndex(field);
+  field.addEventListener("mouseenter", (e) => {
+    recolorField(e);
   });
-  console.log(field.style.backgroundColor);
 });
